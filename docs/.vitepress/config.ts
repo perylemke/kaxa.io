@@ -79,6 +79,10 @@ export default defineConfig({
         items: [{ text: "MCP", link: "/agents/mcp" }],
       },
     ],
+    editLink: {
+      pattern: "https://github.com/perylemke/kaxa.io/edit/main/docs/:path",
+      text: "Edit this page on GitHub",
+    },
     footer: {
       message:
         '<a href="https://github.com/perylemke/kaxa">GitHub</a> · <a href="https://github.com/perylemke/kaxa/releases">Releases</a>',
