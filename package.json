@@ -1,0 +1,19 @@
+{
+  "name": "kaxa.io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs --host 127.0.0.1",
+    "build": "vitepress build docs && node scripts/verify-dist.mjs",
+    "preview": "vitepress preview docs --host 127.0.0.1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@fontsource/familjen-grotesk": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.44"
+  }
+}

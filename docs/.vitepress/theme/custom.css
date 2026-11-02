@@ -1,0 +1,130 @@
+:root {
+  color-scheme: dark;
+  --kx-bg: #07111f;
+  --kx-surface: #0e1c33;
+  --kx-line: rgba(231, 238, 248, 0.1);
+  --kx-text: #e7eef8;
+  --kx-muted: #93a4bd;
+  --kx-accent: #7eb6ff;
+  --kx-accent-2: #2f6fed;
+  --vp-c-bg: #07111f;
+  --vp-c-bg-alt: #0b1728;
+  --vp-c-bg-elv: #0e1c33;
+  --vp-c-bg-elv-up: #12243f;
+  --vp-c-bg-elv-down: #07111f;
+  --vp-c-bg-soft: #12243f;
+  --vp-c-bg-soft-up: #183056;
+  --vp-c-bg-soft-down: #0b1728;
+  --vp-c-bg-mute: #0b1728;
+  --vp-c-text-1: #e7eef8;
+  --vp-c-text-2: #93a4bd;
+  --vp-c-text-3: #6e829c;
+  --vp-c-brand-1: #7eb6ff;
+  --vp-c-brand-2: #9dc8ff;
+  --vp-c-brand-3: #2f6fed;
+  --vp-c-brand-soft: rgba(126, 182, 255, 0.16);
+  --vp-c-divider: rgba(231, 238, 248, 0.1);
+  --vp-c-border: rgba(231, 238, 248, 0.14);
+  --vp-c-gutter: rgba(231, 238, 248, 0.06);
+  --vp-c-default-1: #e7eef8;
+  --vp-c-default-2: #c5d2e4;
+  --vp-c-default-3: #93a4bd;
+  --vp-c-default-soft: #12243f;
+  --vp-c-tip-1: #7eb6ff;
+  --vp-c-tip-2: #9dc8ff;
+  --vp-c-tip-3: #2f6fed;
+  --vp-c-tip-soft: rgba(47, 111, 237, 0.16);
+  --vp-button-brand-bg: #2f6fed;
+  --vp-button-brand-hover-bg: #4b86f4;
+  --vp-button-brand-text: #f4f8ff;
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-alt-bg: #12243f;
+  --vp-button-alt-hover-bg: #183056;
+  --vp-button-alt-text: #e7eef8;
+  --vp-button-alt-border: rgba(231, 238, 248, 0.14);
+  --vp-custom-block-info-bg: rgba(47, 111, 237, 0.14);
+  --vp-custom-block-info-border: #2f6fed;
+  --vp-custom-block-info-text: #e7eef8;
+  --vp-custom-block-info-code-bg: #102038;
+  --vp-code-color: #d6e6ff;
+  --vp-code-bg: #102038;
+  --vp-code-block-bg: #0b1728;
+  --vp-code-block-divider-color: rgba(231, 238, 248, 0.1);
+  --vp-code-copy-code-bg: #12243f;
+  --vp-code-copy-code-hover-bg: #183056;
+  --vp-code-copy-code-active-text: #7eb6ff;
+  --vp-code-tab-divider: rgba(231, 238, 248, 0.1);
+  --vp-code-tab-text-color: #93a4bd;
+  --vp-code-tab-active-text-color: #e7eef8;
+  --vp-code-tab-hover-text-color: #e7eef8;
+  --vp-nav-bg-color: rgba(7, 17, 31, 0.9);
+  --vp-nav-screen-bg-color: #07111f;
+  --vp-sidebar-bg-color: #07111f;
+  --vp-local-nav-bg-color: #07111f;
+  --vp-local-search-bg: #0e1c33;
+  --vp-local-search-result-bg: #0e1c33;
+  --vp-font-family-base: "Familjen Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+  --vp-font-family-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", monospace;
+  --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --vp-shadow-2: 0 12px 32px rgba(0, 0, 0, 0.28);
+  --vp-shadow-3: 0 24px 48px rgba(0, 0, 0, 0.36);
+}
+
+html,
+body {
+  background: #07111f;
+}
+
+.VPNavBarTitle .logo {
+  height: 48px;
+  width: 48px;
+}
+
+.VPNavBar .content-body {
+  font-family: var(--vp-font-family-base);
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.VPNavBarMenuLink,
+.VPSidebarItem .text {
+  letter-spacing: -0.015em;
+}
+
+.vp-doc a,
+.VPFooter a {
+  text-underline-offset: 0.16em;
+}
+
+:focus-visible {
+  outline: 2px solid #7eb6ff;
+  outline-offset: 3px;
+}
+
+.VPContent.is-page {
+  padding-top: 0 !important;
+}
+
+.VPContent.is-page .vp-doc {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+.VPContent.is-page .vp-doc > div {
+  width: 100%;
+  max-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
