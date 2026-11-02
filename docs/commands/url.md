@@ -5,7 +5,7 @@ description: Change who can open a Sprites URL.
 
 # kaxa url
 
-Set Sprites URL authentication. This command is only supported for the sprites provider. Modal, E2B, Docker, and Daytona are rejected before any API call.
+Set Sprites URL authentication. This command is only supported for the sprites provider. Modal, E2B, Docker, Daytona, and Blaxel are rejected before any API call.
 
 ```bash
 kaxa url <name> <public|sprite>
