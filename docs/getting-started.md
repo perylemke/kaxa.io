@@ -5,7 +5,7 @@ description: Install kaxa, set a provider token, and create your first sandbox.
 
 # Getting started
 
-kaxa is a command-line interface for sandbox providers. Sprites, Modal, and Daytona go through their official Go SDKs. E2B and Docker Sandboxes use clients in kaxa. One set of commands creates a sandbox, runs a command in it, and deletes it.
+kaxa is a command-line interface for sandbox providers. Sprites, Modal, Daytona, and Blaxel go through their official Go SDKs. E2B and Docker Sandboxes use clients in kaxa. One set of commands creates a sandbox, runs a command in it, and deletes it.
 
 You need an account and a token for each provider you use. Building from source needs Go 1.27 or newer. Installing a release binary does not.
 
@@ -40,7 +40,7 @@ export KAXA_DEFAULT_PROVIDER=sprites
 export KAXA_SPRITES_TOKEN=...
 ```
 
-The provider value is `sprites`, `modal`, `e2b`, `docker`, or `daytona`. Account setup for each one is in [Sprites](/providers/sprites), [Modal](/providers/modal), [E2B](/providers/e2b), [Docker](/providers/docker), and [Daytona](/providers/daytona). Every variable is listed in [Configuration](/configuration).
+The provider value is `sprites`, `modal`, `e2b`, `docker`, `daytona`, or `blaxel`. Account setup for each one is in [Sprites](/providers/sprites), [Modal](/providers/modal), [E2B](/providers/e2b), [Docker](/providers/docker), [Daytona](/providers/daytona), and [Blaxel](/providers/blaxel). Every variable is listed in [Configuration](/configuration).
 
 You can pass `--provider sprites` on a command instead of `KAXA_DEFAULT_PROVIDER`.
 
@@ -58,6 +58,7 @@ kaxa create --provider modal --sync my-box
 kaxa create --provider e2b --sync my-box
 kaxa create --provider docker --sync my-box
 kaxa create --provider daytona --sync my-box
+kaxa create --provider blaxel --sync my-box
 kaxa new my-sprite               # alias of create
 
 kaxa list                        # interactive table in a terminal; plain columns when piped
@@ -68,7 +69,7 @@ kaxa console my-sprite           # interactive bash (requires a terminal)
 kaxa ssh my-sprite               # alias of console
 
 kaxa sync my-sprite              # copy this git repository into a sandbox
-kaxa sync --no-install my-sprite # copy it and skip the dependency commands
+kaxa sync --no-install my-sprite # copy it and skip toolchain and dependency installs
 
 kaxa restart my-sprite
 kaxa upgrade my-sprite
@@ -86,9 +87,9 @@ kaxa destroy --force my-sprite
 kaxa rm my-sprite                # alias of destroy
 ```
 
-`create` labels the sandbox `kaxa`. `--sync` copies the Git repository of the current directory, including `.git` and excluding ignored files, then installs toolchains and project dependencies. `--no-install` still installs the tools and skips the dependency commands. `--api` publishes one HTTP service. The full flag list is in [create](/commands/create).
+`create` labels the sandbox `kaxa`. `--sync` copies the Git repository of the current directory, including `.git` and excluding ignored files, then installs toolchains and project dependencies. `--no-install` copies the repository and skips the toolchain and the dependency commands. `--api` publishes one HTTP service. The full flag list is in [create](/commands/create).
 
-`exec` and `console` start in the workspace of a sandbox created with `--sync`. See [exec](/commands/exec) and [console](/commands/console).
+`exec` and `console` start in the workspace of a sandbox created with `--sync`. On Blaxel, `console` attaches to the terminal the sandbox starts, and 15 minutes without input ends the session. See [exec](/commands/exec) and [console](/commands/console).
 
 `sync` adds another Git repository to a sandbox that already has one. It does not replace a directory. See [sync](/commands/sync).
 
