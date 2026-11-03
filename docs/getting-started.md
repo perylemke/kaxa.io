@@ -69,7 +69,7 @@ kaxa console my-sprite           # interactive bash (requires a terminal)
 kaxa ssh my-sprite               # alias of console
 
 kaxa sync my-sprite              # copy this git repository into a sandbox
-kaxa sync --no-install my-sprite # copy it and skip the dependency commands
+kaxa sync --no-install my-sprite # copy it and skip toolchain and dependency installs
 
 kaxa restart my-sprite
 kaxa upgrade my-sprite
@@ -87,7 +87,7 @@ kaxa destroy --force my-sprite
 kaxa rm my-sprite                # alias of destroy
 ```
 
-`create` labels the sandbox `kaxa`. `--sync` copies the Git repository of the current directory, including `.git` and excluding ignored files, then installs toolchains and project dependencies. `--no-install` still installs the tools and skips the dependency commands. `--api` publishes one HTTP service. The full flag list is in [create](/commands/create).
+`create` labels the sandbox `kaxa`. `--sync` copies the Git repository of the current directory, including `.git` and excluding ignored files, then installs toolchains and project dependencies. `--no-install` copies the repository and skips the toolchain and the dependency commands. `--api` publishes one HTTP service. The full flag list is in [create](/commands/create).
 
 `exec` and `console` start in the workspace of a sandbox created with `--sync`. On Blaxel, `console` attaches to the terminal the sandbox starts, and 15 minutes without input ends the session. See [exec](/commands/exec) and [console](/commands/console).
 
