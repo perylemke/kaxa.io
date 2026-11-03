@@ -7,6 +7,8 @@ description: Blaxel account, API key, and workspace.
 
 The `blaxel` provider runs sandboxes on [Blaxel](https://blaxel.ai). kaxa uses the official Blaxel Go SDK (`https://api.blaxel.ai/v0`), with an API key and a workspace name. Both live in the environment. kaxa does not read `BL_API_KEY`, `BL_WORKSPACE`, `~/.blaxel/config.yaml`, or the Blaxel CLI login.
 
+Blaxel arrives in the next kaxa release. `brew install` stays on the current final version, which does not include this provider. Install a test version with `VERSION`, as described in [Test versions](/installation#test-versions).
+
 ## Create an account
 
 1. Open [blaxel.ai](https://blaxel.ai) and sign up.
