@@ -5,7 +5,7 @@ description: Environment variables and the command index.
 
 # Configuration
 
-kaxa is a CLI for sandbox providers. Sprites is fully implemented. Modal supports create (including --sync), list, exec, console, snapshot, and destroy. E2B supports create (including --sync and --api), list, exec, console, restart, sync, and destroy. Docker supports create (including --sync, --template, and --api), list, exec, console, restart, sync, snapshot, and destroy through the Docker Sandboxes API. Daytona supports create (including --sync, --template, and --api), list, exec, console, restart, sync, snapshot, and destroy through the Daytona API. Blaxel supports create (including --sync, --template, and --api), list, exec, console, sync, and destroy through the Blaxel API. Features that only exist for Sprites are rejected for Modal, E2B, Docker, Daytona, and Blaxel with a message that names the providers that have them. Create, destroy, and the list URL auth prompt use the Dracula theme.
+kaxa is a CLI for sandbox providers. Sprites is fully implemented. Modal supports create (including --sync), list, exec, console, snapshot, and destroy. E2B supports create (including --sync and --api), list, exec, console, restart, sync, and destroy. Docker supports create (including --sync, --template, and --api), list, exec, console, restart, sync, snapshot, and destroy through the Docker Sandboxes API. Daytona supports create (including --sync, --template, --api, and --block-all-network-access), list, exec, console, restart, sync, snapshot, and destroy through the Daytona API. Blaxel supports create (including --sync, --template, --api, and --disk-percent), list, exec, console, sync, snapshot, unarchive, and destroy through the Blaxel API. Features that only exist for Sprites are rejected for Modal, E2B, Docker, Daytona, and Blaxel with a message that names the providers that have them. Create, destroy, and the list URL auth prompt use the Dracula theme.
 
 Install kaxa with Homebrew, a curl download, or from source: [install](/installation).
 
@@ -34,6 +34,7 @@ Every command except `version` and `--help` loads configuration before it runs.
 | `KAXA_BLAXEL_TEMPLATE` | Blaxel image for new sandboxes. Optional; default `blaxel/base-image:latest` |
 | `KAXA_BLAXEL_REGION` | Blaxel region. Optional; default `us-pdx-1` |
 | `KAXA_BLAXEL_MEMORY` | Blaxel memory in megabytes. Optional; default `4096` |
+| `KAXA_BLAXEL_DISK_PERCENT` | Share of Blaxel memory for the filesystem, from 10 to 95. Optional; empty uses 50. `create --disk-percent` overrides it |
 
 `--provider` wins over `KAXA_DEFAULT_PROVIDER`. Tokens are never read from a flag, from the Sprites CLI config file, from `~/.modal.toml`, or from `E2B_API_KEY`, or from `BL_API_KEY`, `BL_WORKSPACE`, and `~/.blaxel`.
 
@@ -49,6 +50,7 @@ Every command except `version` and `--help` loads configuration before it runs.
 | `kaxa sync` | [sync](/commands/sync) |
 | `kaxa destroy` (`rm`) | [destroy](/commands/destroy) |
 | `kaxa restart` | [restart](/commands/restart) |
+| `kaxa unarchive` | [unarchive](/commands/unarchive) |
 | `kaxa upgrade` | [upgrade](/commands/upgrade) |
 | `kaxa snapshot` | [snapshot](/commands/snapshot) |
 | `kaxa url` | [url](/commands/url) |

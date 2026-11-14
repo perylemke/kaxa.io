@@ -53,7 +53,7 @@ Standard output, standard error, and standard input are passed through, and the 
 
 ## Blaxel
 
-Pick the provider with `--provider blaxel` or `KAXA_DEFAULT_PROVIDER=blaxel`. A sandbox in standby wakes for the command. An archived sandbox is left archived, and the command fails.
+Pick the provider with `--provider blaxel` or `KAXA_DEFAULT_PROVIDER=blaxel`. A sandbox in standby wakes for the command. An archived sandbox is left archived, and the command fails. Run [unarchive](/commands/unarchive) to bring it back.
 
 ```bash
 kaxa --provider blaxel exec my-box -- ls -la

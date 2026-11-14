@@ -7,6 +7,7 @@ const providers = [
   { name: "E2B", href: "/providers/e2b" },
   { name: "Docker", href: "/providers/docker" },
   { name: "Daytona", href: "/providers/daytona" },
+  { name: "Blaxel", href: "/providers/blaxel" },
 ];
 
 const steps = [
@@ -35,6 +36,7 @@ const commands = [
   { name: "console", hint: "Open a shell", href: "/commands/console" },
   { name: "sync", hint: "Copy a repository", href: "/commands/sync" },
   { name: "restart", hint: "Reboot from disk", href: "/commands/restart" },
+  { name: "unarchive", hint: "Bring an archived sandbox back", href: "/commands/unarchive" },
   { name: "upgrade", hint: "Move to a new platform", href: "/commands/upgrade" },
   { name: "snapshot", hint: "Save and restore disk", href: "/commands/snapshot" },
   { name: "url", hint: "Set URL access", href: "/commands/url" },
