@@ -58,6 +58,7 @@ export default defineConfig({
           { text: "console", link: "/commands/console" },
           { text: "sync", link: "/commands/sync" },
           { text: "restart", link: "/commands/restart" },
+          { text: "unarchive", link: "/commands/unarchive" },
           { text: "upgrade", link: "/commands/upgrade" },
           { text: "snapshot", link: "/commands/snapshot" },
           { text: "url", link: "/commands/url" },

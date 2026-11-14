@@ -95,9 +95,9 @@ kaxa rm my-sprite                # alias of destroy
 
 `list` prints `no sandboxes created` when there are none. In a terminal, Enter opens details. See [list](/commands/list).
 
-`restart` works on Sprites, E2B, Docker, and Daytona. `upgrade` is Sprites only. See [restart](/commands/restart) and [upgrade](/commands/upgrade).
+`restart` works on Sprites, E2B, Docker, and Daytona. `unarchive` brings an archived Blaxel sandbox back. `upgrade` is Sprites only. See [restart](/commands/restart), [unarchive](/commands/unarchive), and [upgrade](/commands/upgrade).
 
-`snapshot` saves the filesystem of a sandbox. Sprites restores in place. Modal, Docker, and Daytona create a new sandbox named by `--to`. See [snapshot](/commands/snapshot).
+`snapshot` saves the filesystem of a sandbox. Sprites and Blaxel restore in place. Modal, Docker, and Daytona create a new sandbox named by `--to`. See [snapshot](/commands/snapshot).
 
 `url` changes who can open a Sprites URL. See [url](/commands/url).
 
