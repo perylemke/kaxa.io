@@ -40,4 +40,6 @@ Each action runs on the provider of the sandbox you opened.
 
 `d` still asks before it destroys. `--force` on [destroy](/commands/destroy) does not apply to this key.
 
+On Vercel, the detail view shows the status, vCPUs, memory, runtime, ports, and URL, as returned by the API.
+
 When stdout is not a terminal, list prints plain columns and does not open the table.

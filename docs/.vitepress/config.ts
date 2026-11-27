@@ -4,7 +4,7 @@ export default defineConfig({
   title: "kaxa",
   titleTemplate: ":title | kaxa",
   description:
-    "One CLI for sandbox providers. Install kaxa and read the manuals for Sprites, Modal, E2B, Docker, Daytona, and Blaxel.",
+    "One CLI for sandbox providers. Install kaxa and read the manuals for Sprites, Modal, E2B, Docker, Daytona, Blaxel, and Vercel.",
   lang: "en-US",
   cleanUrls: true,
   lastUpdated: true,
@@ -74,6 +74,7 @@ export default defineConfig({
           { text: "Docker", link: "/providers/docker" },
           { text: "Daytona", link: "/providers/daytona" },
           { text: "Blaxel", link: "/providers/blaxel" },
+          { text: "Vercel", link: "/providers/vercel" },
         ],
       },
       {

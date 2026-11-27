@@ -14,7 +14,7 @@ kaxa new [name]
 
 Without a name, a form asks for the name, provider, and the same yes/no choices as the flags. When API is yes, the form asks for the command and the port. The form uses the Dracula theme. It does not ask for `--dir`; pass that flag if you need it.
 
-Sprites, Modal, E2B, Docker, Daytona, and Blaxel implement create. `--running` and `kaxa url` exist only for Sprites. `--public` on Sprites makes the URL public, and on Blaxel it makes the preview public; the others reject it with a message that names the providers that have it. API publish works on Sprites, E2B, Docker, Daytona, and Blaxel. `--sync` works on all six; see [Sync](#sync).
+Sprites, Modal, E2B, Docker, Daytona, Blaxel, and Vercel implement create. `--running` and `kaxa url` exist only for Sprites. `--public` on Sprites makes the URL public, and on Blaxel it makes the preview public; the others reject it with a message that names the providers that have it. API publish works on Sprites, E2B, Docker, Daytona, Blaxel, and Vercel. `--sync` works on all seven; see [Sync](#sync).
 
 Modal sandboxes use a Debian image, live for up to 24 hours, and stop after one idle hour. Names are DNS labels. See [Modal account and token](/providers/modal).
 
@@ -31,16 +31,18 @@ Docker sandboxes run in Docker's cloud, created through the Docker Sandboxes API
 | Flag | Meaning |
 | --- | --- |
 | `--running` | Keep the sandbox up for one hour, serve tmux on its URL, and open that URL in a browser |
-| `--sync` | Copy the current Git repository into `/home/sprite/workspace/<repo>` (Sprites) `/home/modal/workspace/<repo>` (Modal), `/home/user/workspace/<repo>` (E2B), `/home/agent/workspace/<repo>` (Docker), `/home/daytona/workspace/<repo>` (Daytona), or `/root/workspace/<repo>` (Blaxel) |
+| `--sync` | Copy the current Git repository into `/home/sprite/workspace/<repo>` (Sprites) `/home/modal/workspace/<repo>` (Modal), `/home/user/workspace/<repo>` (E2B), `/home/agent/workspace/<repo>` (Docker), `/home/daytona/workspace/<repo>` (Daytona), or `/root/workspace/<repo>` (Blaxel), or `/vercel/sandbox/workspace/<repo>` (Vercel) |
 | `--dir` | Git repository to copy. Requires `--sync`. Default: the current directory |
-| `--api` | Publish one HTTP service on the Sprites URL, on the E2B sandbox URL for the API port, on the Docker URL that Docker gives the published port, on the public preview URL of the API port on Daytona, or on a preview named `kaxa-api` on Blaxel. The Blaxel preview is private unless `--public` is set. Requires `--api-cmd` |
+| `--api` | Publish one HTTP service on the Sprites URL, on the E2B sandbox URL for the API port, on the Docker URL that Docker gives the published port, on the public preview URL of the API port on Daytona, on a preview named `kaxa-api` on Blaxel, or on a Vercel URL for the declared port. The Blaxel preview is private unless `--public` is set. Requires `--api-cmd` |
 | `--api-cmd` | Comma-separated argv. The first item is the binary |
 | `--api-port` | Port the process listens on. Default `8000`. `8080` is reserved when `--running` is also set |
 | `--env` | Comma-separated `KEY=VALUE` variables for the sandbox. A value cannot contain a comma. A bare `KEY` is rejected |
 | `--env-file` | Dotenv file of sandbox variables. `--env` wins on the same key |
 | `--api-env` | Environment variable for the service: `KEY=VALUE`, or `KEY` to copy the value from your shell. Repeat for more. Requires `--api` |
 | `--public` | On Sprites, make the URL reachable without an account. On Blaxel, make the `kaxa-api` preview public. Without it, a Blaxel preview is private and the token is printed once. Refused with `--running` unless `--api` is set |
-| `--template` | E2B, Docker, Daytona, and Blaxel: the template to start the sandbox from. Default: `KAXA_E2B_TEMPLATE`, `KAXA_DOCKER_TEMPLATE`, `KAXA_DAYTONA_TEMPLATE`, or `KAXA_BLAXEL_TEMPLATE`, then the base image. See [Templates on E2B](#templates-on-e2b) and [Templates on Docker](#templates-on-docker) |
+| `--template` | E2B, Docker, Daytona, Blaxel, and Vercel: the template to start the sandbox from (a snapshot ID on Vercel). Default: `KAXA_E2B_TEMPLATE`, `KAXA_DOCKER_TEMPLATE`, `KAXA_DAYTONA_TEMPLATE`, `KAXA_BLAXEL_TEMPLATE`, or `KAXA_VERCEL_TEMPLATE`, then the base image. See [Templates on E2B](#templates-on-e2b) and [Templates on Docker](#templates-on-docker) |
+| `--cpu` | CPU cores for the sandbox (Vercel: 1 or an even number of vCPUs; each vCPU includes 2 GB of memory). Omit for the provider default. Unsupported providers reject the flag |
+| `--block-all-network-access` | Block all outbound network access from the sandbox. Vercel. The default is off |
 | `--disk-percent` | Share of Blaxel memory for the filesystem, from 10 to 95. Overrides `KAXA_BLAXEL_DISK_PERCENT` for that create. Omit it, and an empty environment variable, and the API uses 50 |
 | `--block-all-network-access` | Block all outbound network access from the sandbox. Daytona only. The default is off |
 
@@ -210,6 +212,10 @@ kaxa list --provider blaxel   # the detail view shows the URL
 On Blaxel, `--api` runs the service as `root` in the repository directory (or `/root` without `--sync`), waits for the port to accept connections, for up to 90 seconds, and then creates a private preview named `kaxa-api`. If the process exits first, kaxa deletes the sandbox and shows the reason. The service log is not kept.
 
 Ports 80, 443, and 8080 are reserved by the sandbox. The process must listen on `0.0.0.0` and on `--api-port`. Blaxel also accepts `$HOST` or `::`. The preview URL is printed with a token, once. Without the token the URL does not open. The token is not stored, and `list` does not show it. `--public` makes the preview public and prints no token; anyone who has that URL can call the service. Standby keeps the process. `--running` does not apply, and there is no `restart`. Archive is a different state: [unarchive](/commands/unarchive) brings the sandbox back, and you start the service again with `exec`.
+
+### Vercel
+
+Vercel sandboxes are created through the Sandbox REST API with `KAXA_VERCEL_TOKEN` and `KAXA_VERCEL_PROJECT`. Names are lowercase letters, digits, `-`, and `_`, up to 63 characters. `--sync` copies the repository to `/vercel/sandbox/workspace/<repo>` as `vercel-sandbox`. `--template` is a snapshot ID (`KAXA_VERCEL_TEMPLATE` sets a default). `--cpu` is 1 or an even number of vCPUs (Hobby allows up to 4, Pro 8, Enterprise 32; each vCPU includes 2 GB of memory). `--api` publishes one port on a Vercel URL; the port is declared at create, port `23456` is reserved, and kaxa waits up to 90 seconds for it to listen. `--public` and `--running` are rejected. See [Vercel](/providers/vercel).
 
 ## Sandbox environment
 

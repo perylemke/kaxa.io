@@ -8,6 +8,7 @@ const providers = [
   { name: "Docker", href: "/providers/docker" },
   { name: "Daytona", href: "/providers/daytona" },
   { name: "Blaxel", href: "/providers/blaxel" },
+  { name: "Vercel", href: "/providers/vercel" },
 ];
 
 const steps = [

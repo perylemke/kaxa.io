@@ -5,7 +5,7 @@ description: Install kaxa, set a provider token, and create your first sandbox.
 
 # Getting started
 
-kaxa is a command-line interface for sandbox providers. Sprites, Modal, Daytona, and Blaxel go through their official Go SDKs. E2B and Docker Sandboxes use clients in kaxa. One set of commands creates a sandbox, runs a command in it, and deletes it.
+kaxa is a command-line interface for sandbox providers. Sprites, Modal, Daytona, and Blaxel go through their official Go SDKs. E2B, Docker Sandboxes, and Vercel use clients in kaxa. One set of commands creates a sandbox, runs a command in it, and deletes it.
 
 You need an account and a token for each provider you use. Building from source needs Go 1.27 or newer. Installing a release binary does not.
 
@@ -40,7 +40,7 @@ export KAXA_DEFAULT_PROVIDER=sprites
 export KAXA_SPRITES_TOKEN=...
 ```
 
-The provider value is `sprites`, `modal`, `e2b`, `docker`, `daytona`, or `blaxel`. Account setup for each one is in [Sprites](/providers/sprites), [Modal](/providers/modal), [E2B](/providers/e2b), [Docker](/providers/docker), [Daytona](/providers/daytona), and [Blaxel](/providers/blaxel). Every variable is listed in [Configuration](/configuration).
+The provider value is `sprites`, `modal`, `e2b`, `docker`, `daytona`, `blaxel`, or `vercel`. Account setup for each one is in [Sprites](/providers/sprites), [Modal](/providers/modal), [E2B](/providers/e2b), [Docker](/providers/docker), [Daytona](/providers/daytona), [Blaxel](/providers/blaxel), and [Vercel](/providers/vercel). Every variable is listed in [Configuration](/configuration).
 
 You can pass `--provider sprites` on a command instead of `KAXA_DEFAULT_PROVIDER`.
 
@@ -89,15 +89,15 @@ kaxa rm my-sprite                # alias of destroy
 
 `create` labels the sandbox `kaxa`. `--sync` copies the Git repository of the current directory, including `.git` and excluding ignored files, then installs toolchains and project dependencies. `--no-install` copies the repository and skips the toolchain and the dependency commands. `--api` publishes one HTTP service. The full flag list is in [create](/commands/create).
 
-`exec` and `console` start in the workspace of a sandbox created with `--sync`. On Blaxel, `console` attaches to the terminal the sandbox starts, and 15 minutes without input ends the session. See [exec](/commands/exec) and [console](/commands/console).
+`exec` and `console` start in the workspace of a sandbox created with `--sync`. On Blaxel, `console` attaches to the terminal the sandbox starts, and 15 minutes without input ends the session. On Vercel, `console` opens the terminal Vercel hosts. See [exec](/commands/exec) and [console](/commands/console).
 
 `sync` adds another Git repository to a sandbox that already has one. It does not replace a directory. See [sync](/commands/sync).
 
 `list` prints `no sandboxes created` when there are none. In a terminal, Enter opens details. See [list](/commands/list).
 
-`restart` works on Sprites, E2B, Docker, and Daytona. `unarchive` brings an archived Blaxel sandbox back. `upgrade` is Sprites only. See [restart](/commands/restart), [unarchive](/commands/unarchive), and [upgrade](/commands/upgrade).
+`restart` works on Sprites, E2B, Docker, Daytona, and Vercel. `unarchive` brings an archived Blaxel sandbox back. `upgrade` is Sprites only. See [restart](/commands/restart), [unarchive](/commands/unarchive), and [upgrade](/commands/upgrade).
 
-`snapshot` saves the filesystem of a sandbox. Sprites and Blaxel restore in place. Modal, Docker, and Daytona create a new sandbox named by `--to`. See [snapshot](/commands/snapshot).
+`snapshot` saves the filesystem of a sandbox. Sprites, Blaxel, and Vercel restore in place. Modal, Docker, and Daytona create a new sandbox named by `--to`. See [snapshot](/commands/snapshot).
 
 `url` changes who can open a Sprites URL. See [url](/commands/url).
 
