@@ -43,6 +43,7 @@ A snapshot ID is one segment of letters, digits, dots, underscores, and hyphens.
 | --- | --- | --- | --- |
 | Sprites | In place: the same sandbox returns to the snapshot state and what changed after it is lost | Rejected | A checkpoint, such as `v7` |
 | Blaxel | In place: the same sandbox and the same URLs return to the snapshot state and what changed after it is lost | Rejected | A workspace snapshot, such as `snap-my-box-1` |
+| Vercel | In place: the same sandbox returns to the snapshot state and what changed after it is lost | Rejected | A manual Vercel snapshot, such as `snap_...` |
 | Modal | New sandbox: kaxa creates the sandbox named by `--to` and keeps the source | Required | A filesystem image, such as `im-...` |
 | Docker | New sandbox: kaxa creates the sandbox named by `--to` and keeps the source | Required | A disk snapshot, such as `0abc...` |
 | Daytona | New sandbox: kaxa creates the sandbox named by `--to` and keeps the source | Required | A disk image, such as `kaxa-my-box-20261101T183005Z` |
@@ -80,6 +81,19 @@ kaxa snapshot delete my-box snap-my-box-1 --provider blaxel
 The Blaxel API has no comment field. kaxa stores `--comment` in `blaxel-snapshots.json` under your user config directory (`~/Library/Application Support/kaxa` on macOS, `$XDG_CONFIG_HOME/kaxa` or `~/.config/kaxa` on Linux, `%AppData%\kaxa` on Windows). The directory is mode `0700` and the file `0600`. `list` with a sandbox name shows every snapshot of that sandbox and adds the comment when this machine recorded it. `list` without a name shows only snapshots recorded in that file. The index is per machine, and two kaxa processes writing at the same moment can lose an entry because the file is not locked.
 
 `create` waits until the snapshot is ready. `restore` waits until the sandbox is deployed again. Forking a snapshot into a new sandbox is not supported.
+
+### Vercel
+
+Vercel restores in place: the same sandbox returns to the snapshot state, and what changed after it is lost. `--to` is rejected. A snapshot is a manual Vercel snapshot with no expiry, so it stays until you delete it.
+
+```bash
+kaxa snapshot create my-box --comment "before the migration" --provider vercel
+kaxa snapshot list my-box --provider vercel
+kaxa snapshot restore my-box <snapshot-id> --provider vercel
+kaxa snapshot delete my-box <snapshot-id> --provider vercel
+```
+
+The Vercel API has no comment field. kaxa stores `--comment` in `vercel-snapshots.json` under your user config directory, so a comment is visible only on this machine. Restore stops the sandbox, points it at the snapshot, and resumes it. Running processes do not survive. Vercel restores a snapshot that is not cached more slowly, so the first resume can take several minutes. kaxa waits up to 10 minutes; if it still times out, run `kaxa list --provider vercel` in a minute and retry.
 
 ### Modal
 

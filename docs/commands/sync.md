@@ -5,7 +5,7 @@ description: Copy a Git repository into a sandbox.
 
 # kaxa sync
 
-Copy another Git repository into a sandbox that already exists. This works for Sprites, Modal, E2B, Docker, Daytona, and Blaxel.
+Copy another Git repository into a sandbox that already exists. This works for Sprites, Modal, E2B, Docker, Daytona, Blaxel, and Vercel. On Vercel the repository lands in `/vercel/sandbox/workspace/<repo>`, owned by `vercel-sandbox`.
 
 ```bash
 kaxa sync <name> [--dir <path>]
